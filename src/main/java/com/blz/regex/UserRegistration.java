@@ -10,6 +10,7 @@ public class UserRegistration {
     public static final String LAST_NAME = "^[A-Z][a-z]{2,}$";
     public static final String EMAIL_REGEX = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     public static final String PHONE_NUMBER = "^[1-9]{2}\\s{1}[1-9]{1}[0-9]{9}$";
+    public static final String PASSWORD_RULE1 = "[A-Za-z]{8,}";
 
     public static void main(String[] args) {
         System.out.println("Enter the first name of user : ");
@@ -20,6 +21,8 @@ public class UserRegistration {
         isValidEmail(sc.nextLine());
         System.out.println("Enter the Mobile Number of user : ");
         isValidMobileNumber(sc.nextLine());
+        System.out.println("Enter the Password of user : ");
+        isValidPassword(sc.nextLine());
     }
 
     public static void isValidFirstName(String name) {
@@ -66,6 +69,18 @@ public class UserRegistration {
                 throw new InvalidUserInformationException("Invalid Mobile Number");
             }
         } catch (InvalidUserInformationException e){
+            System.out.println(e);
+        }
+    }
+
+    public static void isValidPassword(String name){
+        try {
+            if (isValidInput(PASSWORD_RULE1,name)){
+                System.out.println("Valid Password : " +name);
+            }else {
+                throw new InvalidUserInformationException("Invalid Pasword");
+            }
+        }catch (InvalidUserInformationException e){
             System.out.println(e);
         }
     }

@@ -9,14 +9,17 @@ public class UserRegistration {
     public static final String FIRST_NAME = "^[A-Z][a-z]{2,}$";
     public static final String LAST_NAME = "^[A-Z][a-z]{2,}$";
     public static final String EMAIL_REGEX = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+    public static final String PHONE_NUMBER = "^[1-9]{2}\\s{1}[1-9]{1}[0-9]{9}$";
 
     public static void main(String[] args) {
         System.out.println("Enter the first name of user : ");
         isValidFirstName(sc.nextLine());
         System.out.println("Enter the last name of user : ");
         isValidLastName(sc.nextLine());
-        System.out.println("Enter the Email address of use : ");
+        System.out.println("Enter the Email address of user : ");
         isValidEmail(sc.nextLine());
+        System.out.println("Enter the Mobile Number of user : ");
+        isValidMobileNumber(sc.nextLine());
     }
 
     public static void isValidFirstName(String name) {
@@ -51,6 +54,18 @@ public class UserRegistration {
                 throw new InvalidUserInformationException("Invalid Email");
             }
         } catch (InvalidUserInformationException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void isValidMobileNumber(String name) {
+        try {
+            if (isValidInput(PHONE_NUMBER, name)) {
+                System.out.println("Valid Mobile Number is : " + name);
+            } else {
+                throw new InvalidUserInformationException("Invalid Mobile Number");
+            }
+        } catch (InvalidUserInformationException e){
             System.out.println(e);
         }
     }

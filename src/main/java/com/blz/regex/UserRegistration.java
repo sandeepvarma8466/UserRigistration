@@ -8,12 +8,17 @@ public class UserRegistration {
     public static final Scanner sc = new Scanner(System.in);
     public static final String FIRST_NAME = "^[A-Z][a-z]{2,}$";
     public static final String LAST_NAME = "^[A-Z][a-z]{2,}$";
+    public static final String EMAIL_REGEX = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+
     public static void main(String[] args) {
         System.out.println("Enter the first name of user : ");
         isValidFirstName(sc.nextLine());
         System.out.println("Enter the last name of user : ");
         isValidLastName(sc.nextLine());
+        System.out.println("Enter the Email address of use : ");
+        isValidEmail(sc.nextLine());
     }
+
     public static void isValidFirstName(String name) {
         try {
             if (isValidInput(FIRST_NAME, name)) {
@@ -25,6 +30,7 @@ public class UserRegistration {
             System.out.println(e);
         }
     }
+
     public static void isValidLastName(String name) {
         try {
             if (isValidInput(LAST_NAME, name)) {
@@ -36,14 +42,29 @@ public class UserRegistration {
             System.out.println(e);
         }
     }
+
+    public static void isValidEmail(String name) {
+        try {
+            if (isValidInput(EMAIL_REGEX, name)) {
+                System.out.println("Valid Email is: " + name);
+            } else {
+                throw new InvalidUserInformationException("Invalid Email");
+            }
+        } catch (InvalidUserInformationException e) {
+            System.out.println(e);
+        }
+    }
+
     private static boolean isValidInput(String regex, String userInput) {
-        return Pattern.matches(regex,userInput);
+        return Pattern.matches(regex, userInput);
     }
 }
+
 class InvalidUserInformationException extends RuntimeException {
     public InvalidUserInformationException() {
         super();
     }
+
     public InvalidUserInformationException(String msg) {
         super(msg);
     }

@@ -10,7 +10,7 @@ public class UserRegistration {
     public static final String LAST_NAME = "^[A-Z][a-z]{2,}$";
     public static final String EMAIL_REGEX = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     public static final String PHONE_NUMBER = "^[1-9]{2}\\s{1}[1-9]{1}[0-9]{9}$";
-    public static final String PASSWORD_RULE3 = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$";
+    public static final String PASSWORD_RULE4 = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%!]).{8,}$";
 
     public static void main(String[] args) {
         System.out.println("Enter the first name of user : ");
@@ -75,7 +75,7 @@ public class UserRegistration {
 
     public static void isValidPassword(String name){
         try {
-            if (isValidInput(PASSWORD_RULE3,name)){
+            if (isValidInput(PASSWORD_RULE4,name)){
                 System.out.println("Valid Password : " +name);
             }else {
                 throw new InvalidUserInformationException("Invalid Pasword");
